@@ -34,7 +34,7 @@ public class RSAExample {
 
         // STEP 2: Alice creates Cipher object defining cipher algorithm.
         // She then encrypts the clear-text and sends it to Bob.
-        final Cipher rsaEnc = Cipher.getInstance(algorithm);
+        final Cipher rsaEnc = Cipher.getInstance("RSA/ECB/OAEPPadding");
         rsaEnc.init(Cipher.ENCRYPT_MODE, bobKP.getPublic());
         final byte[] ct = rsaEnc.doFinal(pt);
 
@@ -43,7 +43,7 @@ public class RSAExample {
         System.out.println("CT: " + Agent.hex(ct));
 
         // STEP 4: Bob decrypts the cipher text using the same algorithm and his private key.
-        final Cipher rsaDec = Cipher.getInstance(algorithm);
+        final Cipher rsaDec = Cipher.getInstance("RSA/ECB/OAEPPadding");
         rsaDec.init(Cipher.DECRYPT_MODE, bobKP.getPrivate());
         final byte[] decryptedText = rsaDec.doFinal(ct);
 
